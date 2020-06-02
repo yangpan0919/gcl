@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据信息展示</title>
+    <script src="webjars/angularjs/1.7.6/angular.js"></script>
+    <script>
+        //建立模块
+        //第一个参数是自定义的模块名，第二个参数是引用的模块名
+        var app = angular.module("myApp", []);
+        //创建控制器
+        app.controller("myController2", function ($scope, $http) {
+
+            $scope.findList = function () {
+                $http({
+                    url: "/data",
+                    method: 'GET'
+
+                }).then(function (response) {
+                    /*成功信息*/
+                    $scope.list = response.data;
+                });
+
+            };
+
+
+        });
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="myController2" ng-init="findList()">
+
+<table>
+    <tr>
+        <td>时间</td>
+        <td>设备编号</td>
+        <td>A侧单串片数</td>
+        <td>A侧压针工作时间:</td>
+        <td>当前产量件</td>
+        <td>A侧基准功率1:</td>
+        <td>A侧基准功率2:</td>
+        <td>A侧基准功率3:</td>
+        <td>A侧设定温度1:</td>
+        <td>A侧片间距</td>
+        <td>A侧串间距</td>
+        <td>A侧硅片尺寸</td>
+        <td>A侧加热平台1设定温度</td>
+        <td>A侧加热平台2设定温度</td>
+        <td>A侧加热平台3设定温度</td>
+        <td>A侧加热平台4设定温度</td>
+        <td>A侧加热平台5设定温度</td>
+        <td>A侧加热平台6设定温度</td>
+        <td>A侧加热平台7设定温度</td>
+        <td>A侧加热平台8设定温度</td>
+        <td>A侧焊接时间1:</td>
+        <td>A侧焊接时间2:</td>
+        <td>A侧焊接时间3:</td>
+        <td>B侧片间距:</td>
+        <td>B侧硅片尺寸:</td>
+        <td>B侧串间距:</td>
+        <td>B侧压针工作时间:</td>
+        <td>B侧基准功率1:</td>
+        <td>B侧基准功率2:</td>
+        <td>B侧基准功率3:</td>
+        <td>B侧设定温度1:</td>
+        <td>B侧加热平台1设定温度</td>
+        <td>B侧加热平台2设定温度</td>
+        <td>B侧加热平台3设定温度</td>
+        <td>B侧加热平台4设定温度</td>
+        <td>B侧加热平台5设定温度</td>
+        <td>B侧加热平台6设定温度</td>
+        <td>B侧加热平台7设定温度</td>
+        <td>B侧加热平台8设定温度</td>
+        <td>B侧焊接时间1:</td>
+        <td>B侧焊接时间2:</td>
+        <td>B侧焊接时间3:</td>
+        <td>栅线数</td>
+        <td>A侧最高功率输出3:</td>
+        <td>B侧最高功率输出3:</td>
+        <td>A侧最高功率输出2:</td>
+        <td>B侧最高功率输出1:</td>
+        <td>B侧最高功率输出2:</td>
+        <td>A侧最低功率输出:</td>
+        <td>B侧最低功率输出:</td>
+        <td>B侧单串片数:</td>
+        <td>A侧预热功率:</td>
+        <td>B侧预热功率:</td>
+        <td>A侧最高功率输出1:</td>
+        <td>A侧比率2:</td>
+        <td>A侧比率3:</td>
+        <td>A侧比率1:</td>
+        <td>B侧比率1:</td>
+        <td>B侧比率2:</td>
+        <td>B侧比率3:</td>
+        <td>B侧比率5:</td>
+        <td>A侧停止功率:</td>
+        <td>B侧停止功率:</td>
+        <td>A侧等待功率:</td>
+        <td>B侧等待功率:</td>
+
+    </tr>
+    <tr ng-repeat="entity in list">
+        <td>{{entity.client_time}}</td>
+        <td>{{entity.device_code}}</td>
+        <td>{{entity.apiecessingle}}</td>
+        <td>{{entity.a_needle_pressing_time/10}}</td>
+        <td>{{entity.a_production_num}}</td>
+        <td>{{entity.a_reference_power/100}}</td>
+        <td>{{entity.a_reference_power2/100}}</td>
+        <td>{{entity.a_reference_power3/100}}</td>
+        <td>{{entity.a_set_temperature}}</td>
+        <td>{{entity.a_slice_spacing}}</td>
+        <td>{{entity.a_string_spacing}}</td>
+        <td>{{entity.a_wafer_size}}</td>
+        <td>{{entity.a_welding_platform_heater1}}</td>
+        <td>{{entity.a_welding_platform_heater2}}</td>
+        <td>{{entity.a_welding_platform_heater3}}</td>
+        <td>{{entity.a_welding_platform_heater4}}</td>
+        <td>{{entity.a_welding_platform_heater5}}</td>
+        <td>{{entity.a_welding_platform_heater6}}</td>
+        <td>{{entity.a_welding_platform_heater7}}</td>
+        <td>{{entity.a_welding_platform_heater8}}</td>
+        <td>{{entity.a_welding_time1/10}}</td>
+        <td>{{entity.a_welding_time2/10}}</td>
+        <td>{{entity.a_welding_time3/10}}</td>
+        <td>{{entity.bsidepanelspacing}}</td>
+        <td>{{entity.bsidesiliconchipsize}}</td>
+        <td>{{entity.bsidestringspacing}}</td>
+        <td>{{entity.b_needle_pressing_time/10}}</td>
+        <td>{{entity.b_reference_power/100}}</td>
+        <td>{{entity.b_reference_power2/100}}</td>
+        <td>{{entity.b_reference_power3/100}}</td>
+        <td>{{entity.b_set_temperature}}</td>
+        <td>{{entity.b_welding_platform_heater1}}</td>
+        <td>{{entity.b_welding_platform_heater2}}</td>
+        <td>{{entity.b_welding_platform_heater3}}</td>
+        <td>{{entity.b_welding_platform_heater4}}</td>
+        <td>{{entity.b_welding_platform_heater5}}</td>
+        <td>{{entity.b_welding_platform_heater6}}</td>
+        <td>{{entity.b_welding_platform_heater7}}</td>
+        <td>{{entity.b_welding_platform_heater8}}</td>
+        <td>{{entity.b_welding_time1/10}}</td>
+        <td>{{entity.b_welding_time2/10}}</td>
+        <td>{{entity.b_welding_time3/10}}</td>
+        <td>{{entity.gridlinesnum}}</td>
+        <td>{{entity.maximumpoweroutputofsidea3/100}}</td>
+        <td>{{entity.maximumpoweroutputofsideb3/100}}</td>
+        <td>{{entity.maximumpoweroutputonsidea2/100}}</td>
+        <td>{{entity.maximumpoweroutputonsideb1/100}}</td>
+        <td>{{entity.maximumpoweroutputonsideb2/100}}</td>
+        <td>{{entity.minimumpoweroutputofsidea/100}}</td>
+        <td>{{entity.minimumpoweroutputofsideb/100}}</td>
+        <td>{{entity.nb}}</td>
+        <td>{{entity.preheatingpoweratsidea/100}}</td>
+        <td>{{entity.preheatingpoweratsideb/100}}</td>
+        <td>{{entity.sideareferencepower1/100}}</td>
+        <td>{{entity.sidearatio2}}</td>
+        <td>{{entity.sidearatio3}}</td>
+        <td>{{entity.sidearatio1}}</td>
+        <td>{{entity.sidebratio1}}</td>
+        <td>{{entity.sidebratio2}}</td>
+        <td>{{entity.sidebratio3}}</td>
+        <td>{{entity.sidebratio5}}</td>
+        <td>{{entity.stoppoweronsidea/100}}</td>
+        <td>{{entity.stoppoweronsideb/100}}</td>
+        <td>{{entity.waitingpoweronsidea/100}}</td>
+        <td>{{entity.waitingpoweronsideb/100}}</td>
+    </tr>
+
+</table>
+</body>
+
+</html>

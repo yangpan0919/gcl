@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>操作信息展示</title>
+    <script src="webjars/angularjs/1.7.6/angular.js"></script>
+    <script>
+        //建立模块
+        //第一个参数是自定义的模块名，第二个参数是引用的模块名
+        var app = angular.module("myApp", []);
+        //创建控制器
+        app.controller("myController1", function ($scope, $http) {
+
+            $scope.findList = function () {
+                $http({
+                    url: "/operation",
+                    method: 'GET'
+
+                }).then(function (response) {
+                    /*成功信息*/
+                    $scope.list = response.data;
+                });
+
+            };
+
+
+        });
+    </script>
+</head>
+<body ng-app="myApp" ng-controller="myController1" ng-init="findList()">
+
+<table>
+    <tr>
+        <td>编号</td>
+        <td>时间</td>
+        <td>旧值</td>
+        <td>新值</td>
+        <td>说明</td>
+    </tr>
+    <tr ng-repeat="entity in list">
+        <td>{{entity.alarmID}}</td>
+        <td>{{entity.eventTime}}</td>
+        <td>{{entity.oldValue}}</td>
+        <td>{{entity.newValue}}</td>
+        <td>{{entity.message}}</td>
+    </tr>
+
+</table>
+</body>
+
+</html>

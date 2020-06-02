@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.tzauto.gcl.dao.GCLMapper">
+
+
+    <select id="queryAlarm" resultType="cn.tzauto.gcl.bean.AlarmBean">
+        select dataid alarmID,alarm_time alarmTime,message,regain_time regainTime from alarm order by alarm_time desc
+    </select>
+    <select id="queryOperation" resultType="cn.tzauto.gcl.bean.OperationBean">
+        select dataid alarmID,event_time eventTime,old_value oldValue,new_value newValue,message from operation order by event_time desc
+    </select>
+    <select id="queryData" resultType="cn.tzauto.gcl.bean.GCLData">
+        select * from ( select * from data order by client_time desc )
+                WHERE ROWNUM &lt; = 100
+    </select>
+<!--    <select id="queryData2" resultType="cn.tzauto.gcl.bean.GCLData">-->
+<!--        select * from ( select * from data order by client_time desc ) tt-->
+<!--        WHERE ROWNUM &lt; = 100-->
+<!--    </select>-->
+</mapper>
